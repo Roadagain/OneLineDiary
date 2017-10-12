@@ -1,0 +1,12 @@
+#!/bin/sh
+
+OLDIARY_DIR="${HOME}/.oldiary"
+TODAY=`date +%Y%m%d`
+
+mkdir -p ${OLDIARY_DIR}
+
+case $1 in
+    "add")
+        echo $2 >> ${OLDIARY_DIR}/${TODAY}.txt
+        ;;
+esac
