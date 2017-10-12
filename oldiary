@@ -1,9 +1,10 @@
 #!/bin/sh
 
+OLDIARY_DIR="${HOME}/.oldiary"
 TODAY=`date +%Y%m%d`
 
 case $1 in
     "add")
-        echo $2 >> ${TODAY}.txt
+        echo $2 >> ${OLDIARY_DIR}/${TODAY}.txt
         ;;
 esac
