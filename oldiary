@@ -1,12 +1,15 @@
 #!/bin/sh
 
 OLDIARY_DIR="${HOME}/.oldiary"
-TODAY=`date +%Y%m%d`
+YEAR=`date +%Y`
+MONTH=`date +%m`
+DAY=`date +%d`
 
 mkdir -p ${OLDIARY_DIR}
 
 case $1 in
     "add")
-        echo $2 >> ${OLDIARY_DIR}/${TODAY}.txt
+        mkdir -p ${OLDIARY_DIR}/${YEAR}/${MONTH}
+        echo $2 >> ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
         ;;
 esac
