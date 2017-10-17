@@ -12,4 +12,7 @@ case $1 in
         mkdir -p ${OLDIARY_DIR}/${YEAR}/${MONTH}
         echo $2 >> ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
         ;;
+    "list")
+        cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
+        ;;
 esac
