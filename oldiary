@@ -13,6 +13,11 @@ case $1 in
         echo $2 >> ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
         ;;
     "list")
+        if [ $2 ]; then
+            YEAR=`echo $2 | cut -d "/" -f 1`
+            MONTH=`echo $2 | cut -d "/" -f 2`
+            DAY=`echo $2 | cut -d "/" -f 3`
+        fi
         if [ -e ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt ]; then
             cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
         else
