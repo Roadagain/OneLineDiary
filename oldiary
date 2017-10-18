@@ -19,7 +19,7 @@ case $1 in
             DAY=`echo $2 | cut -d "/" -f 3`
         fi
         if [ -e ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt ]; then
-            cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
+            cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt -n
         else
             echo "No diaries on ${YEAR}/${MONTH}/${DAY}."
         fi
