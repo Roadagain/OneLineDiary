@@ -47,7 +47,9 @@ case $1 in
         if [ $3 ]; then
             set_date $3
         fi
-        if [ $2 -gt `cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt | wc -l` ]; then
+        if [ ! -e ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt ]; then
+            echo "No diaries on ${YEAR}/${MONTH}/${DAY}."
+        elif [ $2 -gt `cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt | wc -l` ]; then
             echo "The diary of ${YEAR}/${MONTH}/${DAY} is less than $2 lines."
             return
         else
