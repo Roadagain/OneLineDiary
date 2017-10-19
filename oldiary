@@ -40,6 +40,11 @@ case $1 in
         fi
         ;;
     "remove")
-        sed -i -e "$2,$2d" ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
+        if [ $2 -gt `cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt | wc -l` ]; then
+            echo "The diary of ${YEAR}/${MONTH}/${DAY} is less than $2 lines."
+            return
+        else
+            sed -i -e "$2,$2d" ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
+        fi
         ;;
 esac
