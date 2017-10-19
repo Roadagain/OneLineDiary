@@ -49,8 +49,6 @@ case $1 in
         fi
         if [ ! -e ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt ]; then
             echo "No diaries on ${YEAR}/${MONTH}/${DAY}."
-        elif [ `expr $2 : '[0-9]\+$'` -ne 1 ]; then
-            echo "Invalid line number: '$2'"
         elif [ $2 -gt `cat ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt | wc -l` ]; then
             echo "The diary of ${YEAR}/${MONTH}/${DAY} is less than $2 lines."
             return
