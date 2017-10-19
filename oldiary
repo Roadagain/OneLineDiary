@@ -7,6 +7,27 @@ DAY=`date +%d`
 
 mkdir -p ${OLDIARY_DIR}
 
+set_date () {
+    case $1 in
+        "today")
+            ;;
+        "yesterday")
+            YEAR=`date -d yesterday +%Y`
+            MONTH=`date -d yesterday +%m`
+            DAY=`date -d yesterday +%d`
+            ;;
+        [0-9]*/[0-9]*/[0-9]*)
+            YEAR=`echo $1 | cut -d "/" -f 1`
+            MONTH=`echo $1 | cut -d "/" -f 2`
+            DAY=`echo $1 | cut -d "/" -f 3`
+            ;;
+        *)
+            echo "Parse failed from '$1'"
+            exit -1
+            ;;
+    esac
+}
+
 case $1 in
     "add")
         mkdir -p ${OLDIARY_DIR}/${YEAR}/${MONTH}
@@ -14,24 +35,7 @@ case $1 in
         ;;
     "list")
         if [ $2 ]; then
-            case $2 in
-                "today")
-                    ;;
-                "yesterday")
-                    YEAR=`date -d yesterday +%Y`
-                    MONTH=`date -d yesterday +%m`
-                    DAY=`date -d yesterday +%d`
-                    ;;
-                [0-9]*/[0-9]*/[0-9]*)
-                    YEAR=`echo $2 | cut -d "/" -f 1`
-                    MONTH=`echo $2 | cut -d "/" -f 2`
-                    DAY=`echo $2 | cut -d "/" -f 3`
-                    ;;
-                *)
-                    echo "Parse failed from '$2'"
-                    exit -1
-                    ;;
-            esac
+            set_date $2
         fi
         if [ -e ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt ]; then
             less -N ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
