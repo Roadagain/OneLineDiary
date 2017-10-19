@@ -39,4 +39,7 @@ case $1 in
             echo "No diaries on ${YEAR}/${MONTH}/${DAY}."
         fi
         ;;
+    "remove")
+        sed -i -e "$2,$2d" ${OLDIARY_DIR}/${YEAR}/${MONTH}/${DAY}.txt
+        ;;
 esac
